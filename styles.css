@@ -82,15 +82,18 @@ form button:hover {
 
 .image-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     flex-wrap: wrap;
     margin-top: 1rem;
+    gap: 10px;
 }
 
 .image-container img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
+    object-fit: cover;
+    aspect-ratio: 16/9;
 }
 
 /* Responsive Design */
@@ -110,7 +113,7 @@ form button:hover {
     }
 
     .image-container img {
-        max-width: 80%;
+        max-width: 100%;
         margin-bottom: 1rem;
     }
 }
