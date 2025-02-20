@@ -17,11 +17,13 @@ nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 nav ul li {
-    display: inline;
-    margin: 0 1rem;
+    margin: 0.5rem;
 }
 
 nav ul li a {
@@ -81,11 +83,49 @@ form button:hover {
 .image-container {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     margin-top: 1rem;
 }
 
 .image-container img {
-    max-width: 30%;
+    max-width: 100%;
     height: auto;
     border-radius: 8px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+
+    main {
+        width: 95%;
+        margin: 1rem auto;
+    }
+
+    .image-container img {
+        max-width: 80%;
+        margin-bottom: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    header {
+        font-size: 1.2rem;
+    }
+
+    nav ul {
+        padding: 0.5rem;
+    }
+
+    main {
+        width: 100%;
+        padding: 0.5rem;
+    }
 }
