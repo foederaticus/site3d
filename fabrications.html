@@ -12,8 +12,8 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            width: 80%;
-            height: 300px;
+            width: 90%;
+            height: 400px;
             margin: auto;
             position: relative;
         }
@@ -24,17 +24,42 @@
             transition: transform 1s ease-in-out;
         }
         .carousel-track img {
-            width: 300px;
-            height: 200px;
+            width: 400px;
+            height: 300px;
             object-fit: cover;
             margin: 0 10px;
             transition: transform 1s, opacity 1s;
             filter: brightness(50%);
             border-radius: 10px;
+            cursor: pointer;
         }
         .carousel-track img.active {
             filter: brightness(100%);
-            transform: scale(1.2);
+            transform: scale(1.2) rotateY(360deg);
+        }
+        .image-viewer {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .image-viewer img {
+            max-width: 70%;
+            max-height: 70%;
+            border-radius: 10px;
+        }
+        .image-viewer .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -59,6 +84,10 @@
                 <img src="images/make2.jpg" alt="Make 2">
             </div>
         </div>
+        <div id="imageViewer" class="image-viewer">
+            <span class="close" onclick="closeImageViewer()">&times;</span>
+            <img id="viewerImage" src="" alt="Agrandissement">
+        </div>
     </main>
     <footer>
         <p>&copy; 2023 Votre Entreprise. Tous droits réservés.</p>
@@ -77,9 +106,9 @@
             let nextIndex = (index + 1) % images.length;
             
             track.innerHTML = `
-                <img src="${images[prevIndex]}" alt="Make ${prevIndex + 1}">
-                <img src="${images[index]}" alt="Make ${index + 1}" class="active">
-                <img src="${images[nextIndex]}" alt="Make ${nextIndex + 1}">
+                <img src="${images[prevIndex]}" alt="Make ${prevIndex + 1}" onclick="openImageViewer('${images[prevIndex]}')">
+                <img src="${images[index]}" alt="Make ${index + 1}" class="active" onclick="openImageViewer('${images[index]}')">
+                <img src="${images[nextIndex]}" alt="Make ${nextIndex + 1}" onclick="openImageViewer('${images[nextIndex]}')">
             `;
         }
 
@@ -90,6 +119,15 @@
         
         setInterval(nextSlide, 4000);
         updateCarousel();
+
+        function openImageViewer(src) {
+            document.getElementById("viewerImage").src = src;
+            document.getElementById("imageViewer").style.display = "flex";
+        }
+
+        function closeImageViewer() {
+            document.getElementById("imageViewer").style.display = "none";
+        }
     </script>
 </body>
 </html>
