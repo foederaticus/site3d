@@ -23,7 +23,7 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0.5rem;
+    margin: 0 1rem;
 }
 
 nav ul li a {
@@ -33,12 +33,12 @@ nav ul li a {
 
 main {
     padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 8px;
     margin: 2rem auto;
     width: 90%;
-    max-width: 800px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 footer {
@@ -46,89 +46,33 @@ footer {
     color: #fff;
     text-align: center;
     padding: 1rem;
-    position: fixed;
-    bottom: 0;
     width: 100%;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-form label {
-    margin: 0.5rem 0 0.2rem;
-}
-
-form input, form textarea {
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-form button {
-    padding: 0.5rem;
-    background-color: #ff6600;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #ff8533;
+    margin-top: 2rem;
 }
 
 .image-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 10px;
+    justify-content: center;
+    padding: 10px;
 }
 
 .image-container img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
+    width: 100%;
+    height: 200px;
     object-fit: cover;
-    aspect-ratio: 16/9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
     nav ul {
         flex-direction: column;
-        text-align: center;
+        align-items: center;
     }
 
-    nav ul li {
-        margin: 0.5rem 0;
-    }
-
-    main {
-        width: 95%;
-        margin: 1rem auto;
-    }
-
-    .image-container img {
-        max-width: 100%;
-        margin-bottom: 1rem;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    header {
-        font-size: 1.2rem;
-    }
-
-    nav ul {
-        padding: 0.5rem;
-    }
-
-    main {
-        width: 100%;
-        padding: 0.5rem;
+    .image-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 }
