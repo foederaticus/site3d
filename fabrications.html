@@ -78,6 +78,26 @@
         .carousel-arrow.right {
             right: 10px;
         }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .pagination button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .pagination button:hover {
+            background-color: var(--secondary-color);
+        }
         .image-viewer {
             display: none;
             position: fixed;
@@ -127,6 +147,10 @@
                 <img src="images/make2.jpg" alt="Make 2">
             </div>
             <button class="carousel-arrow right" onclick="nextSlide()">&#10095;</button>
+        </div>
+        <div class="pagination">
+            <button onclick="prevSlide()">Précédent</button>
+            <button onclick="nextSlide()">Suivant</button>
         </div>
         <div id="imageViewer" class="image-viewer">
             <span class="close" onclick="closeImageViewer()" aria-label="Fermer">&times;</span>
