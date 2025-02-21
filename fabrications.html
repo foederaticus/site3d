@@ -12,6 +12,25 @@
             --secondary-color: #ff6600;
             --transition-duration: 1s;
         }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--primary-color);
+            padding: 10px 20px;
+        }
+        .logo {
+            height: 50px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
         .carousel-container {
             display: flex;
             justify-content: center;
@@ -70,10 +89,10 @@
 </head>
 <body>
     <header>
-        <img src="images/petit logo coin.png" alt="Logo" class="logo">
+        <img src="images/petit_logo_coin.png" alt="Logo" class="logo">
         <nav>
             <ul>
-               <li><a href="index.html">Accueil</a></li>
+                <li><a href="index.html">Accueil</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="fabrications.html">Fabrications</a></li>
                 <li><a href="about.html">À propos</a></li>
