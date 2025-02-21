@@ -1,104 +1,115 @@
-/* Styles généraux */
+/* styles.css */
+
+/* Ajout du fond d'écran */
 body {
+    background-image: url('images/background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: url('images/background.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #333;
 }
 
-/* Styles pour le header */
-header {
+/* Amélioration de la navigation */
+nav {
     background-color: rgba(0, 0, 0, 0.8);
-    padding: 20px;
+    padding: 10px;
     text-align: center;
 }
-
-header h1 {
-    color: #fff;
-    margin: 0;
-    font-size: 2rem;
-}
-
 nav ul {
     list-style: none;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
 }
-
 nav ul li {
     display: inline;
+    margin: 0 15px;
 }
-
 nav ul li a {
-    color: #fff;
+    color: white;
     text-decoration: none;
-    font-size: 1.2rem;
-    padding: 10px;
-    transition: color 0.3s;
+    font-size: 18px;
 }
 
-nav ul li a:hover {
-    color: #ff6600;
-}
-
-/* Sections */
-main {
+/* Mise en page des sections */
+section {
     padding: 40px;
     text-align: center;
 }
 
-section {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 900px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-h2 {
-    color: #ff6600;
-}
-
-/* Styles des services */
+/* Ajustement des services */
 .service-container {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     flex-wrap: wrap;
 }
-
 .service-box {
     background-color: #ff6600;
     color: white;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    transition: transform 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 350px;
+    width: 100%;
 }
-
-.service-box:hover {
-    transform: scale(1.05);
-}
-
 .service-box img {
     width: 100%;
-    height: 200px;
+    height: 250px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
-/* Styles du footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.8);
+/* Fabrications - Affichage des images avec zoom */
+.fabrication-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+.fabrication-gallery img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+.fabrication-gallery img:hover {
+    transform: scale(1.1);
+}
+
+/* Zoom sur les images de fabrication */
+.image-viewer {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.image-viewer img {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 10px;
+}
+.image-viewer .close, .image-viewer .prev, .image-viewer .next {
+    position: absolute;
     color: white;
-    margin-top: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+.image-viewer .close {
+    top: 10px;
+    right: 20px;
+}
+.image-viewer .prev {
+    left: 20px;
+}
+.image-viewer .next {
+    right: 20px;
 }
