@@ -61,6 +61,23 @@
             filter: brightness(100%);
             transform: scale(1.2) rotateY(360deg);
         }
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .carousel-arrow.left {
+            left: 10px;
+        }
+        .carousel-arrow.right {
+            right: 10px;
+        }
         .image-viewer {
             display: none;
             position: fixed;
@@ -89,7 +106,7 @@
 </head>
 <body>
     <header>
-        <img src="images/petit_logo_coin.png" alt="Logo" class="logo">
+        <img src="images/petit logo coin.png" alt="Logo" class="logo">
         <nav>
             <ul>
                 <li><a href="index.html">Accueil</a></li>
@@ -103,11 +120,13 @@
     <main>
         <h1>Nos Fabrications</h1>
         <div class="carousel-container">
+            <button class="carousel-arrow left" onclick="prevSlide()">&#10094;</button>
             <div class="carousel-track">
                 <img src="images/make12.jpg" alt="Make 12">
                 <img src="images/make1.jpg" alt="Make 1" class="active">
                 <img src="images/make2.jpg" alt="Make 2">
             </div>
+            <button class="carousel-arrow right" onclick="nextSlide()">&#10095;</button>
         </div>
         <div id="imageViewer" class="image-viewer">
             <span class="close" onclick="closeImageViewer()" aria-label="Fermer">&times;</span>
@@ -139,6 +158,11 @@
 
         function nextSlide() {
             index = (index + 1) % images.length;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            index = (index - 1 + images.length) % images.length;
             updateCarousel();
         }
 
