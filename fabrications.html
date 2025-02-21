@@ -6,6 +6,37 @@
     <title>Fabrications</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
+    <style>
+        .carousel-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            width: 80%;
+            height: 300px;
+            margin: auto;
+            position: relative;
+        }
+        .carousel-track {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 1s ease-in-out;
+        }
+        .carousel-track img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            margin: 0 10px;
+            transition: transform 1s, opacity 1s;
+            filter: brightness(50%);
+            border-radius: 10px;
+        }
+        .carousel-track img.active {
+            filter: brightness(100%);
+            transform: scale(1.2);
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -22,7 +53,11 @@
     <main>
         <h1>Nos Fabrications</h1>
         <div class="carousel-container">
-            <img id="carousel-image" src="images/make1.jpg" alt="Make 1">
+            <div class="carousel-track">
+                <img src="images/make12.jpg" alt="Make 12">
+                <img src="images/make1.jpg" alt="Make 1" class="active">
+                <img src="images/make2.jpg" alt="Make 2">
+            </div>
         </div>
     </main>
     <footer>
@@ -35,14 +70,26 @@
             "images/make9.jpg", "images/make10.jpg", "images/make11.jpg", "images/make12.jpg"
         ];
         let index = 0;
-        const carouselImage = document.getElementById("carousel-image");
+        const track = document.querySelector(".carousel-track");
 
-        function changeImage() {
-            index = (index + 1) % images.length;
-            carouselImage.src = images[index];
+        function updateCarousel() {
+            let prevIndex = (index - 1 + images.length) % images.length;
+            let nextIndex = (index + 1) % images.length;
+            
+            track.innerHTML = `
+                <img src="${images[prevIndex]}" alt="Make ${prevIndex + 1}">
+                <img src="${images[index]}" alt="Make ${index + 1}" class="active">
+                <img src="${images[nextIndex]}" alt="Make ${nextIndex + 1}">
+            `;
         }
 
-        setInterval(changeImage, 4000);
+        function nextSlide() {
+            index = (index + 1) % images.length;
+            updateCarousel();
+        }
+        
+        setInterval(nextSlide, 4000);
+        updateCarousel();
     </script>
 </body>
 </html>
