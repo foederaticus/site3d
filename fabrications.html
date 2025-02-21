@@ -22,39 +22,27 @@
     <main>
         <h1>Nos Fabrications</h1>
         <div class="carousel-container">
-            <div class="carousel-track">
-                <img src="images/make1.jpg" alt="Make 1">
-                <img src="images/make2.jpg" alt="Make 2">
-                <img src="images/make3.jpg" alt="Make 3">
-                <img src="images/make4.jpg" alt="Make 4">
-                <img src="images/make5.jpg" alt="Make 5">
-                <img src="images/make6.jpg" alt="Make 6">
-                <img src="images/make7.jpg" alt="Make 7">
-                <img src="images/make8.jpg" alt="Make 8">
-                <img src="images/make9.jpg" alt="Make 9">
-                <img src="images/make10.jpg" alt="Make 10">
-                <img src="images/make11.jpg" alt="Make 11">
-                <img src="images/make12.jpg" alt="Make 12">
-            </div>
+            <img id="carousel-image" src="images/make1.jpg" alt="Make 1">
         </div>
     </main>
     <footer>
         <p>&copy; 2023 Votre Entreprise. Tous droits réservés.</p>
     </footer>
     <script>
-        const track = document.querySelector('.carousel-track');
-        let scrollAmount = 0;
+        const images = [
+            "images/make1.jpg", "images/make2.jpg", "images/make3.jpg", "images/make4.jpg",
+            "images/make5.jpg", "images/make6.jpg", "images/make7.jpg", "images/make8.jpg",
+            "images/make9.jpg", "images/make10.jpg", "images/make11.jpg", "images/make12.jpg"
+        ];
+        let index = 0;
+        const carouselImage = document.getElementById("carousel-image");
 
-        function autoScroll() {
-            scrollAmount += 1;
-            if (scrollAmount >= track.scrollWidth / 2) {
-                scrollAmount = 0;
-            }
-            track.style.transform = `translateX(-${scrollAmount}px)`;
-            requestAnimationFrame(autoScroll);
+        function changeImage() {
+            index = (index + 1) % images.length;
+            carouselImage.src = images[index];
         }
 
-        autoScroll();
+        setInterval(changeImage, 4000);
     </script>
 </body>
 </html>
