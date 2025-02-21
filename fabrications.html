@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
     <style>
+        :root {
+            --primary-color: #333;
+            --secondary-color: #ff6600;
+            --transition-duration: 1s;
+        }
         .carousel-container {
             display: flex;
             justify-content: center;
@@ -21,21 +26,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 1s ease-in-out;
-            transform-style: preserve-3d;
-            perspective: 1000px;
+            transition: transform var(--transition-duration) ease-in-out;
         }
         .carousel-track img {
             width: 400px;
             height: 300px;
             object-fit: cover;
             margin: 0 10px;
-            transition: transform 1s, opacity 1s;
+            transition: transform var(--transition-duration), opacity var(--transition-duration);
             filter: brightness(50%);
             border-radius: 10px;
             cursor: pointer;
-            position: absolute;
-            transform-origin: center;
         }
         .carousel-track img.active {
             filter: brightness(100%);
@@ -65,24 +66,6 @@
             font-size: 30px;
             cursor: pointer;
         }
-        .carousel-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 30px;
-            color: white;
-            cursor: pointer;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 50%;
-            user-select: none;
-        }
-        .carousel-arrow.left {
-            left: 10px;
-        }
-        .carousel-arrow.right {
-            right: 10px;
-        }
     </style>
 </head>
 <body>
@@ -100,12 +83,14 @@
     <main>
         <h1>Nos Fabrications</h1>
         <div class="carousel-container">
-            <span class="carousel-arrow left" onclick="prevSlide()">&#10094;</span>
-            <div class="carousel-track"></div>
-            <span class="carousel-arrow right" onclick="nextSlide()">&#10095;</span>
+            <div class="carousel-track">
+                <img src="images/make12.jpg" alt="Make 12">
+                <img src="images/make1.jpg" alt="Make 1" class="active">
+                <img src="images/make2.jpg" alt="Make 2">
+            </div>
         </div>
         <div id="imageViewer" class="image-viewer">
-            <span class="close" onclick="closeImageViewer()">&times;</span>
+            <span class="close" onclick="closeImageViewer()" aria-label="Fermer">&times;</span>
             <img id="viewerImage" src="" alt="Agrandissement">
         </div>
     </main>
@@ -122,29 +107,21 @@
         const track = document.querySelector(".carousel-track");
 
         function updateCarousel() {
-            track.innerHTML = "";
-            images.forEach((imgSrc, i) => {
-                const img = document.createElement("img");
-                img.src = imgSrc;
-                img.classList.add(i === index ? "active" : "");
-                img.style.transform = `rotateY(${i * (360 / images.length)}deg) translateZ(500px)`;
-                img.onclick = () => openImageViewer(imgSrc);
-                track.appendChild(img);
-            });
+            let prevIndex = (index - 1 + images.length) % images.length;
+            let nextIndex = (index + 1) % images.length;
+
+            track.innerHTML = `
+                <img src="${images[prevIndex]}" alt="Make ${prevIndex + 1}" onclick="openImageViewer('${images[prevIndex]}')">
+                <img src="${images[index]}" alt="Make ${index + 1}" class="active" onclick="openImageViewer('${images[index]}')">
+                <img src="${images[nextIndex]}" alt="Make ${nextIndex + 1}" onclick="openImageViewer('${images[nextIndex]}')">
+            `;
         }
 
         function nextSlide() {
             index = (index + 1) % images.length;
-            track.style.transform = `rotateY(-${index * (360 / images.length)}deg)`;
             updateCarousel();
         }
 
-        function prevSlide() {
-            index = (index - 1 + images.length) % images.length;
-            track.style.transform = `rotateY(-${index * (360 / images.length)}deg)`;
-            updateCarousel();
-        }
-        
         setInterval(nextSlide, 4000);
         updateCarousel();
 
